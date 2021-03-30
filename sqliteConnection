@@ -1,0 +1,12 @@
+var sqlite3 = require('sqlite3');
+
+var file = "Bookshop.db";
+var db = new sqlite3.Database(file);
+// db fields: bookid, booktitle, author, subject, price, qtyinstock
+// , row.booktitle, row.author, row.subject, row.price, row.qtyinstock
+db.all("SELECT bookid, author, subject, price, qtyinstock FROM books", function(err, rows) {
+    rows.forEach(function(row) {
+        console.log(row.bookid, row.author, row.subject, row.price, row.qtyinstock);
+    })
+});
+db.close();
